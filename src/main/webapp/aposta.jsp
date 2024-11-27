@@ -18,7 +18,6 @@
         if (request.getAttribute("single_aposta") != null) {
             Aposta aposta = (Aposta)request.getAttribute("single_aposta");
         %>
- 
         <h1>Aposta Details</h1>
         <div>ID: <%= aposta.getId()%></div>
         <div>Name: <%= aposta.getNomUsuari()%></div>
@@ -32,7 +31,6 @@
                     <td><b>Name</b></td>
                     <td><b>Options</b></td>
             </tr>
- 
             <% for (Aposta aposta : (List<Aposta>)request.getAttribute("aposta_list")) {%>
  
             <tr>
