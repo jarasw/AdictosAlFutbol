@@ -1,54 +1,88 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@ page import="com.dwes.adictosalfutbol.Aposta" %>
 <%@ page import="com.dwes.adictosalfutbol.ApostaServicio" %>
-<%@ page import="java.text.DecimalFormat" %>
-<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
+<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>MVC AdictosAlFutbol </title>
+        <title>Llistat d'Apostes</title>
+        <style>
+            table {
+                width: 70%;
+                margin: 20px auto;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+            form {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            a {
+                text-decoration: none;
+                color: blue;
+                margin: 5px;
+            }
+        </style>
     </head>
     <body>
-        <%
-            if (request.getAttribute("single_aposta") != null) {
-                Aposta aposta = (Aposta) request.getAttribute("single_aposta");
-        %>
-        <h1>Detalls de l'Aposta</h1>
-        <div><b>ID:</b> <%= aposta.getId() %></div>
-        <div><b>Nom:</b> <%= aposta.getNomUsuari() %></div>
-        <div><b>Enfrontament:</b> <%= aposta.getEnfrontament() %></div>
-        <div><b>Predicció de Gols:</b> <%= aposta.getGolsEquip1() %> - <%= aposta.getGolsEquip2() %></div>
-        <div><b>Data del Partit:</b> <%= aposta.getDataPartit() %></div>
-        <div><b>Quantitat Apostada:</b> <%= new DecimalFormat("#0.00").format(aposta.getApostaEconomica()) %> €</div>
-        <div><a href="Aposta">Tornar</a></div>
+        <h1 style="text-align: center;">Llistat d'Apostes</h1>
 
-        <% } else { %>
+        <!-- Formulari per filtrar per nom d'usuari -->
+        <form method="get" action="ApostaServlet">
+            <label for="nomUsuari">Filtrar per nom d'usuari:</label>
+            <input type="text" id="nomUsuari" name="nomUsuari" value="${nomFiltre}">
+            <button type="submit">Buscar</button>
+        </form>
 
-        <h1>Llista d'Apostes</h1>
-        <table border="1">
+        <!-- Formulari per filtrar per rang d'aposta -->
+        <form method="get" action="ApostaServlet">
+            <label for="nomUsuari">Filtrar per rang d'aposta:</label>
+            <input type="text" id="apostaEconomica" name="apostaEconomica" value="${nomFiltre}">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <!-- Taula d'apostes -->
+        <table>
             <tr>
-                <td><b>Nom</b></td>
-                <td><b>Enfrontament</b></td>
-                <td><b>Predicció de Gols</b></td>
-                <td><b>Opcions</b></td>
+                <th>Nom d'Usuari</th>
+                <th>Enfrontament</th>
+                <th>Competicio</th>
+                <th>Resultat</th>
+                <th>Data del Partit</th>
+                <th>Quantitat Apostada</th>
+                <th>Guanyadora</th>
+                <th>Accions</th>
             </tr>
-            <% 
-                for (Aposta aposta : (List<Aposta>) request.getAttribute("aposta_list")) { 
-            %>
-            <tr>
-                <td><%= aposta.getNomUsuari() %></td>
-                <td><%= aposta.getEnfrontament() %></td>
-                <td><%= aposta.getGolsEquip1() %> - <%= aposta.getGolsEquip2() %></td>
-                <td><a href="Aposta?id=<%= aposta.getId() %>">Detalls...</a></td>
-            </tr>
-            <% } 
-                } 
-            %>
+            <c:forEach var="aposta" items="${aposta_list}">
+                <tr>
+                    <td>${aposta.nomUsuari}</td>
+                    <td>${aposta.enfrontament}</td>
+                    <td>${aposta.competicio}</td>
+                    <td>${aposta.golsEquip1} - ${aposta.golsEquip2}</td>
+                    <td>${aposta.dataPartit}</td>
+                    <td>${aposta.apostaEconomica} €</td>
+                    <td>${aposta.apostaGuanyadora}</td>
+                    <td>
+                        <!-- Editar i eliminar -->
+                        <a href="apostaForm.jsp?id=${aposta.id}">Editar</a>
+                        <a href="ApostaServlet?action=delete&id=${aposta.id}" onclick="return confirm('Estàs segur de voler eliminar aquesta aposta?')">Eliminar</a>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
+
+        <!-- Afegir una nova aposta -->
+        <div style="text-align: center;">
+            <a href="apostaForm.jsp">Afegir Nova Aposta</a>
+        </div>
     </body>
 </html>
