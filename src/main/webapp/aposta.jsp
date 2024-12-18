@@ -46,7 +46,7 @@
         <!-- Formulari per filtrar per enfrontament -->
         <form method="get" action="ApostaServlet">
             <label for="enfrontament">Filtrar per enfrontament:</label>
-            <input type="text" id="enfrontament" name="enfrontament" value="${nomFiltre}">
+            <input type="text" id="enfrontament" name="enfrontament" value="${enfrontamentFiltre}">
             <button type="submit">Buscar</button>
         </form>
 
