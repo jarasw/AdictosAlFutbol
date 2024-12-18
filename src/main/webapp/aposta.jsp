@@ -45,7 +45,7 @@
 
         <!-- Formulari per filtrar per rang d'aposta -->
         <form method="get" action="ApostaServlet">
-            <label for="nomUsuari">Filtrar per rang d'aposta:</label>
+            <label for="apostaEconomica">Filtrar per rang d'aposta:</label>
             <input type="text" id="apostaEconomica" name="apostaEconomica" value="${nomFiltre}">
             <button type="submit">Buscar</button>
         </form>
