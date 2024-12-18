@@ -42,11 +42,18 @@
             <input type="text" id="nomUsuari" name="nomUsuari" value="${nomFiltre}">
             <button type="submit">Buscar</button>
         </form>
-            
+
         <!-- Formulari per filtrar per enfrontament -->
         <form method="get" action="ApostaServlet">
             <label for="enfrontament">Filtrar per enfrontament:</label>
             <input type="text" id="enfrontament" name="enfrontament" value="${enfrontamentFiltre}">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <!-- Formulari per filtrar per data -->
+        <form method="get" action="ApostaServlet">
+            <label for="dataPartit">Filtrar per data</label>
+            <input type="text" id="dataPartit" name="dataPartit" value="${dataPartitFiltre}">
             <button type="submit">Buscar</button>
         </form>
 

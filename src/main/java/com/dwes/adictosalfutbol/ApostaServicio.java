@@ -11,7 +11,7 @@ public class ApostaServicio {
 
     ApostaServicio() {
         apostes = new ArrayList<>();
-        apostes.add(new Aposta(1, "Joan", "Madrid vs Betis","La Liga", 2, 1, LocalDate.of(2024, 12, 19), 50.0,"1"));
+        apostes.add(new Aposta(1, "Joan", "Madrid vs Betis", "La Liga", 2, 1, LocalDate.of(2024, 12, 19), 50.0, "1"));
     }
 
     public static ApostaServicio getInstance() {
@@ -26,34 +26,46 @@ public class ApostaServicio {
     }
 
     public List<Aposta> getApostesByNomUsuari(String nomUsuari) {
-    List<Aposta> filteredApostes = new ArrayList<>();
-    for (Aposta aposta : apostes) {
-        if (aposta.getNomUsuari().equalsIgnoreCase(nomUsuari)) {
-            filteredApostes.add(aposta);
+        List<Aposta> filteredApostes = new ArrayList<>();
+        for (Aposta aposta : apostes) {
+            if (aposta.getNomUsuari().equalsIgnoreCase(nomUsuari)) {
+                filteredApostes.add(aposta);
+            }
         }
+        return filteredApostes;
     }
-    return filteredApostes;
-}
     
+
+    public List<Aposta> getApostesByData(LocalDate dataPartit) {
+        List<Aposta> filteredApostes = new ArrayList<>();
+        for (Aposta aposta : apostes) {
+            if (aposta.getDataPartit().equalsIgnoreCase(dataPartit)) {
+                filteredApostes.add(aposta);
+            } else {
+            }
+        }
+        return filteredApostes;
+    }
+
     public List<Aposta> getApostesByEnfrontament(String enfrontament) {
-    List<Aposta> filteredApostes = new ArrayList<>();
-    for (Aposta aposta : apostes) {
-        if (aposta.getNomUsuari().equalsIgnoreCase(enfrontament)) {
-            filteredApostes.add(aposta);
+        List<Aposta> filteredApostes = new ArrayList<>();
+        for (Aposta aposta : apostes) {
+            if (aposta.getNomUsuari().equalsIgnoreCase(enfrontament)) {
+                filteredApostes.add(aposta);
+            }
         }
+        return filteredApostes;
     }
-    return filteredApostes;
-}
-    
+
     public List<Aposta> getApostesByRangAposta(double apostaEconomica) {
-    List<Aposta> filteredApostes = new ArrayList<>();
-    for (Aposta aposta : apostes) {
-        if (aposta.getApostaEconomica().equalsIgnoreCase(apostaEconomica)) {
-            filteredApostes.add(aposta);
+        List<Aposta> filteredApostes = new ArrayList<>();
+        for (Aposta aposta : apostes) {
+            if (aposta.getApostaEconomica().equalsIgnoreCase(apostaEconomica)) {
+                filteredApostes.add(aposta);
+            }
         }
+        return filteredApostes;
     }
-    return filteredApostes;
-}
 
     public Aposta getApostaById(int id) {
         for (Aposta aposta : apostes) {
