@@ -138,6 +138,7 @@ public class ApostaController extends HttpServlet {
                 response.sendRedirect("Aposta");
             }
         } catch (IOException | IllegalArgumentException e) {
+            e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en l'aposta.");
         }
     }

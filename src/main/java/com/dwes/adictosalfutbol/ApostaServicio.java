@@ -1,5 +1,7 @@
 package com.dwes.adictosalfutbol;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +9,12 @@ import java.util.List;
 public class ApostaServicio {
 
     private static ApostaServicio instance;
-    private List<Aposta> apostes;
+    private final List<Aposta> apostes;
 
     ApostaServicio() {
         apostes = new ArrayList<>();
-        apostes.add(new Aposta(1, "Joan", "Madrid vs Betis", "La Liga", 2, 1, LocalDate.of(2024, 12, 19), 50.0, "1"));
+        apostes.add(new Aposta(1, "Joan", "Madrid vs Betis", "La Liga", 2, 1, LocalDate.of(2024, 12, 19), 50.0, FALSE));
+        apostes.add(new Aposta(2, "Sergi", "Atleti vs Liverpool", "Champion", 0, 1, LocalDate.of(2025, 02, 14), 250.0, TRUE));
     }
 
     public static ApostaServicio getInstance() {
@@ -95,7 +98,7 @@ public class ApostaServicio {
             apostaExistent.setGolsEquip2(aposta.getGolsEquip2());
             apostaExistent.setDataPartit(aposta.getDataPartit());
             apostaExistent.setApostaEconomica(aposta.getApostaEconomica());
-            apostaExistent.setApostaEconomica(aposta.getApostaGuanyada());
+            apostaExistent.setApostaGuanyada(aposta.getApostaGuanyada());
         }
     }
 }
