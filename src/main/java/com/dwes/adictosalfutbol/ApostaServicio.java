@@ -34,6 +34,26 @@ public class ApostaServicio {
     }
     return filteredApostes;
 }
+    
+    public List<Aposta> getApostesByEnfrontament(String enfrontament) {
+    List<Aposta> filteredApostes = new ArrayList<>();
+    for (Aposta aposta : apostes) {
+        if (aposta.getNomUsuari().equalsIgnoreCase(enfrontament)) {
+            filteredApostes.add(aposta);
+        }
+    }
+    return filteredApostes;
+}
+    
+    public List<Aposta> getApostesByRangAposta(double apostaEconomica) {
+    List<Aposta> filteredApostes = new ArrayList<>();
+    for (Aposta aposta : apostes) {
+        if (aposta.getApostaEconomica().equalsIgnoreCase(apostaEconomica)) {
+            filteredApostes.add(aposta);
+        }
+    }
+    return filteredApostes;
+}
 
     public Aposta getApostaById(int id) {
         for (Aposta aposta : apostes) {
