@@ -42,6 +42,13 @@
             <input type="text" id="nomUsuari" name="nomUsuari" value="${nomFiltre}">
             <button type="submit">Buscar</button>
         </form>
+            
+        <!-- Formulari per filtrar per enfrontament -->
+        <form method="get" action="ApostaServlet">
+            <label for="enfrontament">Filtrar per enfrontament:</label>
+            <input type="text" id="enfrontament" name="enfrontament" value="${nomFiltre}">
+            <button type="submit">Buscar</button>
+        </form>
 
         <!-- Formulari per filtrar per rang d'aposta -->
         <form method="get" action="ApostaServlet">
